@@ -1,0 +1,39 @@
+# Configuration for data efficiency experiments
+# Sweeps across multiple data regimes with multiple random seeds
+
+experiment:
+  name: data_efficiency
+  description: Compare model performance across different data regimes
+  
+seeds: [1, 2, 3, 4, 5]
+
+data_regimes: [0.05, 0.10, 0.50, 1.00]  # 5%, 10%, 50%, 100%
+
+models:
+  - name: pind
+    config: pind/configs/default.yaml
+  - name: mlp
+    config: pind/configs/baseline_mlp.yaml
+  - name: node
+    config: pind/configs/baseline_node.yaml
+  - name: residual
+    config: pind/configs/baseline_residual.yaml
+
+training:
+  epochs: 30
+  batch_size: 64
+  learning_rate: 0.001
+
+evaluation:
+  rollout_horizon: 50
+  metrics:
+    - position_rmse
+    - velocity_rmse
+    - cone_violation
+    - penetration_depth
+    - energy_drift
+
+output:
+  results_dir: experiments/results
+  save_predictions: true
+  generate_plots: true

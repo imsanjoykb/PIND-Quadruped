@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  pind:
+    build: .
+    image: pind-quadruped:latest
+    container_name: pind-research
+    volumes:
+      - .:/workspace
+      - ./data:/workspace/data
+      - ./experiments:/workspace/experiments
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - MUJOCO_GL=egl
+    runtime: nvidia
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+  pind-cpu:
+    build: .
+    image: pind-quadruped:latest
+    container_name: pind-research-cpu
+    volumes:
+      - .:/workspace
+      - ./data:/workspace/data
+      - ./experiments:/workspace/experiments
+    stdin_open: true
+    tty: true
+    command: /bin/bash

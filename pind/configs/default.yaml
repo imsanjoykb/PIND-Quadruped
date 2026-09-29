@@ -1,0 +1,53 @@
+# Default configuration for PIND training
+
+model:
+  name: pind  # Options: pind, mlp, node, residual
+  nv: 18  # Number of velocity DOFs
+  nu: 12  # Number of actuated joints
+  hidden_dim: 128
+  eps_c: 0.002  # Contact activation threshold
+  friction_coeff: 0.8
+
+training:
+  epochs: 30
+  batch_size: 64
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  grad_clip: 5.0
+  optimizer: adamw
+  scheduler: cosine  # Options: cosine, step, plateau, none
+  warmup_epochs: 3
+
+loss_weights:
+  beta_dyn: 1.0  # Dynamics residual weight
+  beta_cone: 10.0  # Friction cone weight
+  beta_pen: 10.0  # Penetration/complementarity weight
+  alpha_comp: 1.0  # Complementarity term weight
+
+data:
+  trajectory_length: 500
+  dt: 0.02
+  num_trajectories: 20
+  data_fraction: 1.0  # Fraction of data to use (0.0-1.0)
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+
+logging:
+  log_interval: 10  # Log every N batches
+  checkpoint_interval: 5  # Save checkpoint every N epochs
+  use_tensorboard: true
+  use_wandb: false
+  wandb_project: pind-quadruped
+  wandb_entity: null
+
+evaluation:
+  eval_interval: 5  # Evaluate every N epochs
+  rollout_horizon: 50  # Multi-step rollout length
+  num_eval_trajectories: 20
+
+system:
+  device: cuda  # Options: cuda, cpu, mps
+  num_workers: 4
+  pin_memory: true
+  seed: 42
