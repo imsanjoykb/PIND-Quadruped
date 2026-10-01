@@ -1,12 +1,3 @@
-"""
-Evaluation script for trained models.
-
-Computes open-loop multi-step rollout metrics including:
-- Position/velocity RMSE
-- Physics constraint violations
-- Energy drift
-"""
-
 import os
 import sys
 import argparse
