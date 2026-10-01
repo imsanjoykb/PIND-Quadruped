@@ -1,5 +1,3 @@
-"""Test suite for PIND models."""
-
 import torch
 import pytest
 from pind.models.pind import PIND, ActuatorResidualMLP, ContactComplianceNetwork
@@ -7,7 +5,6 @@ from pind.models.baselines import BlackBoxMLP, NeuralODEVectorField, Unconstrain
 
 
 class TestPIND:
-    """Test PIND model."""
     
     def setup_method(self):
         """Setup test fixtures."""
@@ -66,7 +63,6 @@ class TestPIND:
 
 
 class TestBaselines:
-    """Test baseline models."""
     
     def test_black_box_mlp(self):
         """Test BlackBoxMLP."""
