@@ -1,11 +1,3 @@
-"""
-Training script for PIND and baseline models.
-
-Example usage:
-    python scripts/train.py --config pind/configs/default.yaml
-    python scripts/train.py --model pind --data-fraction 0.10 --epochs 30
-"""
-
 import os
 import sys
 import argparse
