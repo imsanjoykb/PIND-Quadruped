@@ -1,10 +1,3 @@
-"""
-Main experiment runner for reproducible benchmarks.
-
-Orchestrates training across multiple seeds, data regimes, and models.
-Generates publication-ready results tables.
-"""
-
 import os
 import sys
 import yaml
@@ -24,7 +17,7 @@ from torch.utils.data import DataLoader, Subset
 
 
 def run_single_experiment(config, data_path, data_fraction, seed, output_dir, device):
-    """Run a single training + evaluation experiment."""
+
     # Set seeds
     torch.manual_seed(seed)
     np.random.seed(seed)
