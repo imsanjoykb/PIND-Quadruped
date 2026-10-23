@@ -19,16 +19,16 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 setup(
     name="pind-quadruped",
     version=__version__,
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="Sanjoy Kumar Barman",
+    author_email="[YOUR_EMAIL]@example.com",  # Update with your actual email
     description="Physics-Informed Neural Dynamics for Learning Quadruped Robot Locomotion",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/PIND-Quadruped",
+    url="https://github.com/imsanjoykb/PIND-Quadruped",
     project_urls={
-        "Bug Tracker": "https://github.com/yourusername/PIND-Quadruped/issues",
+        "Bug Tracker": "https://github.com/imsanjoykb/PIND-Quadruped/issues",
         "Documentation": "https://pind-quadruped.readthedocs.io/",
-        "Source Code": "https://github.com/yourusername/PIND-Quadruped",
+        "Source Code": "https://github.com/imsanjoykb/PIND-Quadruped",
     },
     packages=find_packages(exclude=["tests", "tests.*", "experiments", "experiments.*"]),
     classifiers=[

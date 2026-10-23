@@ -4,7 +4,6 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Official PyTorch implementation of **"Physics-Informed Neural Dynamics for Learning Quadruped Robot Locomotion"**.
 
 ## Overview
 
@@ -80,7 +79,7 @@ PIND-Quadruped/
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/PIND-Quadruped.git
+git clone https://github.com/imsanjoykb/PIND-Quadruped.git
 cd PIND-Quadruped
 
 # Create virtual environment
@@ -272,25 +271,6 @@ Where:
 - `L_cone`: Friction cone violation penalty
 - `L_pen`: Ground penetration and complementarity loss
 
-## Performance Metrics
-
-Evaluated on Unitree Go1 quadruped (18 DOF floating base):
-
-| Data Regime | 50-Step Position RMSE (mm) | Cone Violation (N) |
-|-------------|----------------------------|---------------------|
-| 5%          | 12.4 ± 2.1                 | 0.08 ± 0.03        |
-| 10%         | 8.7 ± 1.5                  | 0.05 ± 0.02        |
-| 50%         | 4.2 ± 0.9                  | 0.02 ± 0.01        |
-| 100%        | 2.8 ± 0.6                  | 0.01 ± 0.005       |
-
-Comparison with baselines at 10% data:
-
-| Method              | Position RMSE (mm) | Relative Improvement |
-|---------------------|--------------------|--------------------|
-| Black-box MLP       | 45.3 ± 8.2         | Baseline           |
-| Neural ODE          | 38.1 ± 6.5         | 1.2×               |
-| Residual MLP        | 22.4 ± 4.1         | 2.0×               |
-| **PIND (Ours)**     | **8.7 ± 1.5**      | **5.2×**           |
 
 ## Testing
 
@@ -307,23 +287,6 @@ pytest tests/test_models.py -v
 pytest tests/ --cov=pind --cov-report=html
 ```
 
-## Contributing
-
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-## Citation
-
-If you use this code in your research, please cite:
-
-```bibtex
-@article{author2024pind,
-  title={Physics-Informed Neural Dynamics for Learning Quadruped Robot Locomotion},
-  author={Your Name and Collaborators},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2024}
-}
-```
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -337,8 +300,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 For questions or issues, please:
-- Open an issue on [GitHub](https://github.com/yourusername/PIND-Quadruped/issues)
-- Email: your.email@institution.edu
+- Open an issue on [GitHub](https://github.com/imsanjoykb/PIND-Quadruped/issues)
+- Email: imsanjoykb@institution.edu
 
 ## Related Work
 
@@ -347,6 +310,3 @@ For questions or issues, please:
 - [Deep Lagrangian Networks](https://arxiv.org/abs/2003.01406)
 - [Physics-Informed Neural Networks (PINNs)](https://www.sciencedirect.com/science/article/pii/S0021999118307125)
 
----
-
-**Note**: This is a research prototype. For production deployment, additional testing and validation are recommended.
