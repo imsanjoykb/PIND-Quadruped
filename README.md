@@ -1,33 +1,47 @@
 <div align="center">
 
-# Physics-Informed Neural Dynamics (PIND)
-### for Learning Quadruped Robot Locomotion
+# Physics-Informed Residual Neural Dynamics for Data-Efficient Predictive Control in Legged Robots
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+![alt text](assets/architecture.png "GRU Architecture")
+
+
+[![Python 3.8+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/XXXX.XXXXX)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-**[Paper](https://arxiv.org/abs/XXXX.XXXXX)** | **[Project Page](#)** | **[Video](#)** | **[Cite](#citation)**
+**[Paper](https://drive.google.com/file/d/1QesV-CkBFA9bbzTsp_qc8x8Q0ZajNxr9/view?usp=sharing)** | **[Project Page](#)** | **[Video](#)** | **[Cite](#citation)**
 
-<img src="assets/pind_overview.png" width="800px"/>
 
-*Official PyTorch implementation of our research on physics-informed neural dynamics for quadruped robots.*
+
+
 
 </div>
 
----
-
-## 📰 News
-
-- **[Oct 2024]** 🎉 Code released!
-- **[Oct 2024]** 📄 Paper submitted to [Conference/Journal]
-- **[Oct 2024]** 🏆 Initial results show 5.2× improvement over baselines
-
----
+## 🎯 Abstract
+>Abstract—Model-based predictive control of legged systems requires dynamic formulations that balance real-time computa-
+tional tractability with the capacity to capture unmodeled electro-mechanical and contact phenomena. While black-box neural dynamics can approximate nonlinear discrepancies, they demand
+extensive uniform state coverage, accumulate compounding drift
+over multi-step integration horizons, and frequently violate fundamental contact invariants. This paper presents Physics-
+Informed Neural Dynamics (PIND), a continuous-time residual framework tailored for data-efficient learning and predictive control of legged locomotion. PIND augments an analytical multi-
+body rigid-body model with two structured neural modules: an internal drivetrain residual strictly projected onto the actuated
+joint manifold, and a continuous contact compliance model.
+The network is trained using a composite physics-informed loss
+that regularizes generalized momentum balances, friction cone
+geometric admissibility, and unilateral contact complementarity.
+We prove an analytical trajectory error bound demonstrating
+that state forecasting error is explicitly bounded by the dynamic
+momentum residual scaled by the minimum eigenvalue of
+the generalized mass matrix. The learned continuous vector
+field is embedded into an interior-point Sequential Quadratic
+Programming (SQP) Nonlinear Model Predictive Control (NMPC)
+loop. Evaluated on the Unitree Go1 quadruped in MuJoCo subject
+to measurement noise, low training budgets (1%–100%), and
+parametric shifts in payload (+48%) and terrain friction (μ = 0.2), PIND achieves stable multi-step forecasting with 10% of the data
+required by black-box neural baselines and preserves dynamic
+feasibility for real-time 50 Hz execution.
 
 ## 🎯 Highlights
+
 
 <div align="center">
 
@@ -45,7 +59,7 @@
 
 ## 🚀 Quick Start
 
-### Installation (< 2 minutes)
+### Installation
 
 ```bash
 # Clone repository
@@ -344,19 +358,6 @@ pytest tests/test_models.py -v
 pytest tests/ --cov=pind --cov-report=html
 open htmlcov/index.html
 ```
-
----
-
-## 📚 Documentation
-
-Comprehensive guides available:
-
-- **[Quick Start Guide](docs/quickstart.md)** - Get running in 5 minutes
-- **[Paper Integration](PAPER_INTEGRATION.md)** - LaTeX templates for your paper
-- **[API Documentation](docs/api.md)** - Detailed API reference
-- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
-- **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions
-
 ---
 
 ## 🎓 Citation
@@ -364,78 +365,14 @@ Comprehensive guides available:
 If you find this work useful, please cite our paper:
 
 ```bibtex
-@article{barman2024pind,
-  title={Physics-Informed Neural Dynamics for Learning Quadruped Robot Locomotion},
-  author={Barman, Sanjoy Kumar and Collaborators},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2024},
+@article{acira2026pind,
+  title={Physics-Informed Residual Neural Dynamics for Data-Efficient Predictive Control in Legged Robots},
+  author={Sanjoy Kumar, Shovan Kumar Paul, Lula Babole Alphonse-Roger},
+  Conference={2026 2nd International Conference on Advanced Computing & Intelligent Robotics Applications},
+  year={2026},
   url={https://github.com/imsanjoykb/PIND-Quadruped}
 }
 ```
 
 ---
 
-## 🙏 Acknowledgments
-
-This work builds upon:
-- [PyTorch](https://pytorch.org/) - Deep learning framework
-- [MuJoCo](https://mujoco.org/) - Physics simulation
-- [Unitree Robotics](https://www.unitree.com/) - Robot platform inspiration
-
-We thank the open-source community for their invaluable tools and resources.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-**Ways to contribute:**
-- 🐛 Report bugs via [Issues](https://github.com/imsanjoykb/PIND-Quadruped/issues)
-- 💡 Suggest features via [Discussions](https://github.com/imsanjoykb/PIND-Quadruped/discussions)
-- 🔧 Submit pull requests
-- 📖 Improve documentation
-- ⭐ Star the repository!
-
----
-
-## 📞 Contact
-
-**Sanjoy Kumar Barman**
-- GitHub: [@imsanjoykb](https://github.com/imsanjoykb)
-- Email: [YOUR_EMAIL]
-
-For questions about the paper or implementation:
-- Open an [issue](https://github.com/imsanjoykb/PIND-Quadruped/issues)
-- Start a [discussion](https://github.com/imsanjoykb/PIND-Quadruped/discussions)
-
----
-
-## 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=imsanjoykb/PIND-Quadruped&type=Date)](https://star-history.com/#imsanjoykb/PIND-Quadruped&Date)
-
----
-
-<div align="center">
-
-### Related Projects
-
-[Neural ODEs](https://arxiv.org/abs/1806.07366) | 
-[Lagrangian Neural Networks](https://arxiv.org/abs/2003.04630) | 
-[Deep Lagrangian Networks](https://arxiv.org/abs/2003.01406) | 
-[PINNs](https://www.sciencedirect.com/science/article/pii/S0021999118307125)
-
----
-
-**Made with ❤️ for the robotics and ML research community**
-
-⭐ **Star us on GitHub — it motivates us a lot!**
-
-</div>
