@@ -1,9 +1,3 @@
-"""
-Explicit 4th-order Runge-Kutta numerical integrator.
-
-Supports continuous-time neural vector fields with PyTorch computational graphs.
-"""
-
 import torch
 from typing import Callable, Any
 

@@ -6,7 +6,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/PIND-Quadruped.git
+git clone https://github.com/imsanjoykb/PIND-Quadruped.git
 cd PIND-Quadruped
 
 # Create and activate virtual environment
@@ -151,7 +151,7 @@ pip install --upgrade mujoco
 ## Getting Help
 
 - Documentation: `docs/`
-- Issues: [GitHub Issues](https://github.com/yourusername/PIND-Quadruped/issues)
+- Issues: [GitHub Issues](https://github.com/imsanjoykb/PIND-Quadruped/issues)
 - Examples: `examples/` directory
 
 ## Common Commands Cheat Sheet

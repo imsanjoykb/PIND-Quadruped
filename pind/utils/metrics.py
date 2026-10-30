@@ -1,9 +1,3 @@
-"""
-Metrics computation utilities for evaluation.
-
-Provides functions to compute various evaluation metrics.
-"""
-
 import torch
 import numpy as np
 from typing import Dict, List, Tuple

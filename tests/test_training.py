@@ -1,9 +1,3 @@
-"""
-Test suite for training pipeline.
-
-Tests training loop, optimization, and checkpointing.
-"""
-
 import pytest
 import torch
 import tempfile

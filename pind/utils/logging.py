@@ -1,9 +1,3 @@
-"""
-Logging utilities for training and experiments.
-
-Provides structured logging with colors and file output.
-"""
-
 import logging
 import sys
 from pathlib import Path

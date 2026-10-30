@@ -586,9 +586,3 @@ stats.print_stats(20)
    # Test with tiny dataset first
    python scripts/train.py --data-fraction 0.01 --epochs 3
    ```
-
----
-
-**Last Updated**: October 2024
-
-For additional help, please open an issue on GitHub or consult the documentation.

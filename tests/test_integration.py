@@ -1,9 +1,3 @@
-"""
-Integration tests for complete workflows.
-
-Tests end-to-end pipelines from data generation to evaluation.
-"""
-
 import pytest
 import torch
 import tempfile

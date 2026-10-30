@@ -1,12 +1,3 @@
-"""
-Baseline Models for Comparison.
-
-Implements:
-- BlackBoxMLP: Pure data-driven discrete dynamics
-- NeuralODEVectorField: Continuous-time neural ODE
-- UnconstrainedResidualMLP: Hybrid model without physics constraints
-"""
-
 import torch
 import torch.nn as nn
 from typing import Optional

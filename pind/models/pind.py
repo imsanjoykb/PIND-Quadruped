@@ -1,10 +1,3 @@
-"""
-Physics-Informed Neural Dynamics (PIND) Model.
-
-Complete PyTorch implementation with strict underactuation projections
-and composite physics losses.
-"""
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

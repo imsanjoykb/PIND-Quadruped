@@ -1,9 +1,3 @@
-"""
-Test suite for utility functions.
-
-Tests MuJoCo interface and numerical integrators.
-"""
-
 import pytest
 import torch
 import numpy as np

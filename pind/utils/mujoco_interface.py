@@ -1,10 +1,3 @@
-"""
-MuJoCo interface for quadruped robot physics.
-
-Provides methods to extract analytical multi-body matrices (M(q), C(q, ν)ν, g(q))
-and contact Jacobians J_c(q) from MuJoCo simulation.
-"""
-
 import mujoco
 import numpy as np
 import torch
@@ -12,19 +5,6 @@ from typing import Tuple, Optional
 
 
 class QuadrupedMuJoCoInterface:
-    """
-    Interface for quadruped robot using MuJoCo physics engine.
-    
-    Extracts analytical dynamics components and contact information
-    for physics-informed learning.
-    
-    Attributes:
-        model: MuJoCo model (MjModel)
-        data: MuJoCo data structure (MjData)
-        nv: Number of velocity DOFs (18 for floating-base quadruped)
-        nq: Number of position coordinates (19 with quaternion)
-        nu: Number of actuated joints (12 for quadruped)
-    """
     
     def __init__(self, xml_path: Optional[str] = None):
         """

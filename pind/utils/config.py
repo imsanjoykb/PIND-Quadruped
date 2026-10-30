@@ -1,9 +1,3 @@
-"""
-Configuration management utilities.
-
-Load and validate YAML configurations.
-"""
-
 import yaml
 from pathlib import Path
 from typing import Dict, Any, Optional

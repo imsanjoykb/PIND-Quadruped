@@ -1,9 +1,3 @@
-"""
-Benchmarking utilities for performance profiling.
-
-Measure inference speed, memory usage, and computational efficiency.
-"""
-
 import torch
 import time
 import psutil
