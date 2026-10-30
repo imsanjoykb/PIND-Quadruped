@@ -16,15 +16,18 @@ parts/
 sdist/
 var/
 wheels/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # Virtual environments
 venv/
 ENV/
 env/
 .venv
+pind-env/
 
 # IDEs
 .vscode/
@@ -33,10 +36,13 @@ env/
 *.swo
 *~
 .DS_Store
+*.sublime-project
+*.sublime-workspace
 
 # Jupyter
 .ipynb_checkpoints
 *.ipynb
+jupyter_notebook_config.py
 
 # Experiments - keep structure but ignore outputs
 experiments/*
@@ -55,21 +61,27 @@ experiments/results/*
 # Data
 data/*
 !data/.gitkeep
+!data/README.md
 
 # Model files
 *.pt
 *.pth
 *.ckpt
 *.h5
+*.pkl
+*.pickle
 
 # Logs
 logs/
 *.log
 runs/
 wandb/
+mlruns/
+lightning_logs/
 
 # Results
 results/
+outputs/
 *.csv
 !benchmark_results.csv
 
@@ -77,6 +89,7 @@ results/
 tmp/
 temp/
 *.tmp
+.cache/
 
 # MuJoCo
 *.mjb
@@ -84,6 +97,84 @@ temp/
 
 # Media
 *.mp4
+*.avi
 *.gif
 *.png
+*.jpg
+*.jpeg
 !assets/*.png
+!assets/*.jpg
+!assets/*.gif
+!figures/*.png
+!figures/*.pdf
+
+# Documentation builds
+docs/_build/
+docs/_static/
+docs/_templates/
+site/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Profiling
+*.prof
+*.lprof
+
+# Environment variables
+.env
+.env.local
+
+# OS specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Archives
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Package manager
+node_modules/
+package-lock.json
+yarn.lock
+
+# LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.bbl
+*.blg
+
+# Backup files
+*.bak
+*.backup
+*~

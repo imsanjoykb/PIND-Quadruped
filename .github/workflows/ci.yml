@@ -1,0 +1,159 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main, develop ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }} with Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+        exclude:
+          # Reduce matrix size
+          - os: macos-latest
+            python-version: '3.8'
+          - os: macos-latest
+            python-version: '3.9'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        pip install pytest pytest-cov
+    
+    - name: Run tests
+      run: |
+        pytest tests/ -v --cov=pind --cov-report=xml --cov-report=term
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+
+  lint:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install black flake8 isort mypy
+    
+    - name: Check code formatting with black
+      run: |
+        black --check pind/ scripts/ tests/
+    
+    - name: Check import sorting with isort
+      run: |
+        isort --check-only pind/ scripts/ tests/
+    
+    - name: Lint with flake8
+      run: |
+        flake8 pind/ scripts/ tests/ --count --statistics
+    
+    - name: Type check with mypy
+      run: |
+        mypy pind/ --ignore-missing-imports
+      continue-on-error: true  # Don't fail on type errors for now
+
+  build-docs:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+    
+    - name: Verify documentation exists
+      run: |
+        test -f README.md
+        test -f docs/quickstart.md
+        test -f docs/api.md
+        echo "✓ Documentation files present"
+
+  integration:
+    name: Integration Test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+    
+    - name: Test data generation (quick)
+      run: |
+        python -m pind.data.generator \
+          --num-trajectories 2 \
+          --trajectory-length 10 \
+          --output test_dataset.pt
+        test -f test_dataset.pt
+        echo "✓ Data generation works"
+    
+    - name: Test training (quick smoke test)
+      run: |
+        python scripts/train.py \
+          --data-path test_dataset.pt \
+          --data-fraction 0.5 \
+          --epochs 2 \
+          --output-dir test_run
+        test -d test_run
+        echo "✓ Training works"
+    
+    - name: Cleanup
+      run: |
+        rm -rf test_dataset.pt test_run
